@@ -1,0 +1,64 @@
+const express = require("express");
+
+const app = express();
+
+const cors = require("cors");
+
+const fs = require("fs");
+
+const { json } = require("express");
+
+app.use(cors());
+
+app.use(express.json());
+
+let postID = 1;
+let likes = 0;
+let emojiOne = 0;
+let emojiTwo = 0;
+let emojiThree = 0;
+
+app.post("/", (req, res) => {
+  //Storing JSON data in myObj
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+
+  //Defining new data
+  const formData = req.body;
+  const data = {
+    PostID: postID,
+    ...formData,
+    Likes: likes,
+    EmojiOne: emojiOne,
+    EmojiTwo: emojiTwo,
+    EmojiThree: emojiThree,
+  };
+  const jsonString = JSON.stringify(data);
+
+  //Adding new data to obj
+  myObj.push(data);
+
+  //Writing to JSON file
+  const newData = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newData, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+app.get("/", (req, res) => {
+  fs.readFileSync("./data/data.json", "utf8", (err, jsonString) => {
+    if (err) {
+      console.log("File read failed:", err);
+      return;
+    }
+    console.log("File data:", jsonString);
+  });
+
+  res.send("It Is Working");
+});
+
+module.exports = { app };

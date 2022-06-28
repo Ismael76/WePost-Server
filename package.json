@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1"
+  },
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "name": "wepost-server",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ismael76/WePost-Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ismael76/WePost-Server/issues"
+  },
+  "homepage": "https://github.com/Ismael76/WePost-Server#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
