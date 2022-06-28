@@ -50,15 +50,15 @@ app.post("/", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  fs.readFileSync("./data/data.json", "utf8", (err, jsonString) => {
-    if (err) {
-      console.log("File read failed:", err);
-      return;
-    }
-    console.log("File data:", jsonString);
-  });
-
-  res.send("It Is Working");
+  res.send(
+    fs.readFileSync("./data/data.json", "utf8", (err, jsonString) => {
+      if (err) {
+        console.log("File read failed:", err);
+        return;
+      }
+      console.log("File data:", jsonString);
+    })
+  );
 });
 
 module.exports = { app };
