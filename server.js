@@ -26,7 +26,7 @@ app.post("/", (req, res) => {
   //Defining new data
   const formData = req.body;
   const data = {
-    PostID: postID,
+    PostID: myObj.length,
     ...formData,
     Likes: likes,
     EmojiOne: emojiOne,
@@ -50,15 +50,53 @@ app.post("/", (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  fs.readFileSync("./data/data.json", "utf8", (err, jsonString) => {
-    if (err) {
-      console.log("File read failed:", err);
-      return;
-    }
-    console.log("File data:", jsonString);
-  });
+  res.send(
+    fs.readFileSync("./data/data.json", "utf8", (err, jsonString) => {
+      if (err) {
+        console.log("File read failed:", err);
+        return;
+      }
+      console.log("File data:", jsonString);
+    })
+  );
+});
 
-  res.send("It Is Working");
+//Comments
+
+app.post("/comments", (req, res) => {
+  //Storing JSON data in myObj
+  const currentData = fs.readFileSync("./data/comments.json");
+  const myObj = JSON.parse(currentData);
+  //Defining new data
+  const formData = req.body;
+  const data = {
+    PostID: myObj.length,
+    ...formData,
+  };
+  const jsonString = JSON.stringify(data);
+  //Adding new data to obj
+  myObj.push(data);
+  //Writing to JSON file
+  const newData = JSON.stringify(myObj);
+  fs.writeFile("./data/comments.json", newData, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+app.get("/comments", (req, res) => {
+  res.send(
+    fs.readFileSync("./data/comments.json", "utf8", (err, jsonString) => {
+      if (err) {
+        console.log("File read failed:", err);
+        return;
+      }
+      console.log("File data:", jsonString);
+    })
+  );
 });
 
 module.exports = { app };
