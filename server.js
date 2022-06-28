@@ -70,7 +70,6 @@ app.post("/comments", (req, res) => {
   //Defining new data
   const formData = req.body;
   const data = {
-    PostID: myObj.length,
     ...formData,
   };
   const jsonString = JSON.stringify(data);
