@@ -26,7 +26,7 @@ app.post("/", (req, res) => {
   //Defining new data
   const formData = req.body;
   const data = {
-    PostID: postID,
+    PostID: myObj.length,
     ...formData,
     Likes: likes,
     EmojiOne: emojiOne,
