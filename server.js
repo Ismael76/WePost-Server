@@ -51,6 +51,7 @@ app.post("/", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  res.status(201).send(myObj);
 });
 
 app.get("/", (req, res) => {
@@ -67,12 +68,13 @@ app.get("/", (req, res) => {
 
 // For one comment
 
+// likes
 app.patch("/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
 
-  console.log(myObj[id].Likes);
+  // console.log(myObj[id].Likes);
   const update = req.body;
 
   console.log(update);
@@ -88,6 +90,83 @@ app.patch("/:id", (req, res) => {
     }
   });
 });
+
+
+
+
+app.patch("/emoji1/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+
+
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].EmojiOne = update.EmojiOne;
+
+
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+//Emoji2
+
+app.patch("/emoji2/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].EmojiTwo = update.EmojiTwo;
+
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+//emoji3
+
+app.patch("/emoji3/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].EmojiThree = update.EmojiThree;
+
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+
 
 //Comments
 
@@ -113,6 +192,7 @@ app.post("/comments", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+   res.status(201).send(myObj);
 });
 
 app.get("/comments", (req, res) => {
@@ -120,11 +200,13 @@ app.get("/comments", (req, res) => {
     fs.readFileSync("./data/comments.json", "utf8", (err, jsonString) => {
       if (err) {
         console.log("File read failed:", err);
+        // res.status(404).send(err);
         return;
       }
       console.log("File data:", jsonString);
+      // res.status(200);
     })
   );
 });
 
-module.exports = { app };
+module.exports =  {app};
