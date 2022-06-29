@@ -71,9 +71,6 @@ app.patch("/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
-  // if (id < myObj.length) {
-  //   res.send(myObj[id]);
-  // }
 
   console.log(myObj[id].Likes);
   const update = req.body;
@@ -81,8 +78,6 @@ app.patch("/:id", (req, res) => {
   console.log(update);
 
   myObj[id].Likes = update.Likes;
-
-  // myObj[id].Likes = heartCounter;
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -93,17 +88,6 @@ app.patch("/:id", (req, res) => {
     }
   });
 });
-
-// app.get("/:id", (req, res) => {
-//   const id = req.params.id - 1;
-//   const currentData = fs.readFileSync("./data/data.json");
-//   const myObj = JSON.parse(currentData);
-//   if (id < myObj.length) {
-//     res.send(myObj[id]);
-//   } else {
-//     res.status(404).send("Not Found!");
-//   }
-// });
 
 //Comments
 
