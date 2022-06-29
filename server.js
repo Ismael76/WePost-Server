@@ -61,6 +61,33 @@ app.get("/", (req, res) => {
   );
 });
 
+// For one comment 
+
+app.patch("/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+  // if (id < myObj.length) {
+  //   res.send(myObj[id]);
+  // }
+
+    const update = req.body;
+    const updateData = {
+      ...update,
+    }
+    console.log(update);
+    const jString = JSON.stringify(updateData);
+    myObj.push(updateData);
+    const newUpdate = JSON.stringify(myObj);
+    fs.writeFile("./data/data.json", newUpdate, (err) => {
+      if (err) {
+        console.log("Error writing file", err);
+      } else {
+        console.log("Successfully wrote file");
+      }
+    })
+});
+
 //Comments
 
 app.post("/comments", (req, res) => {
