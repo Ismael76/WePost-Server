@@ -73,9 +73,6 @@ app.patch("/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
-  // if (id < myObj.length) {
-  //   res.send(myObj[id]);
-  // }
 
   // console.log(myObj[id].Likes);
   const update = req.body;
@@ -83,8 +80,6 @@ app.patch("/:id", (req, res) => {
   console.log(update);
 
   myObj[id].Likes = update.Likes;
-
-  // myObj[id].Likes = heartCounter;
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -98,13 +93,12 @@ app.patch("/:id", (req, res) => {
 
 
 
+
 app.patch("/emoji1/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
-  // if (id < myObj.length) {
-  //   res.send(myObj[id]);
-  // }
+
 
   const update = req.body;
 
@@ -112,7 +106,7 @@ app.patch("/emoji1/:id", (req, res) => {
 
   myObj[id].EmojiOne = update.EmojiOne;
 
-  // myObj[id].Likes = heartCounter;
+
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -130,9 +124,6 @@ app.patch("/emoji2/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
-  // if (id < myObj.length) {
-  //   res.send(myObj[id]);
-  // }
 
   const update = req.body;
 
@@ -140,7 +131,6 @@ app.patch("/emoji2/:id", (req, res) => {
 
   myObj[id].EmojiTwo = update.EmojiTwo;
 
-  // myObj[id].Likes = heartCounter;
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -158,9 +148,6 @@ app.patch("/emoji3/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
-  // if (id < myObj.length) {
-  //   res.send(myObj[id]);
-  // }
 
   const update = req.body;
 
@@ -168,7 +155,6 @@ app.patch("/emoji3/:id", (req, res) => {
 
   myObj[id].EmojiThree = update.EmojiThree;
 
-  // myObj[id].Likes = heartCounter;
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -180,16 +166,7 @@ app.patch("/emoji3/:id", (req, res) => {
   });
 });
 
-// app.get("/:id", (req, res) => {
-//   const id = req.params.id - 1;
-//   const currentData = fs.readFileSync("./data/data.json");
-//   const myObj = JSON.parse(currentData);
-//   if (id < myObj.length) {
-//     res.send(myObj[id]);
-//   } else {
-//     res.status(404).send("Not Found!");
-//   }
-// });
+
 
 //Comments
 
