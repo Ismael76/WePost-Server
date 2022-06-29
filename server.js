@@ -67,6 +67,7 @@ app.get("/", (req, res) => {
 
 // For one comment
 
+// likes
 app.patch("/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
@@ -75,12 +76,96 @@ app.patch("/:id", (req, res) => {
   //   res.send(myObj[id]);
   // }
 
-  console.log(myObj[id].Likes);
+  // console.log(myObj[id].Likes);
   const update = req.body;
 
   console.log(update);
 
   myObj[id].Likes = update.Likes;
+
+  // myObj[id].Likes = heartCounter;
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+
+
+app.patch("/emoji1/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+  // if (id < myObj.length) {
+  //   res.send(myObj[id]);
+  // }
+
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].EmojiOne = update.EmojiOne;
+
+  // myObj[id].Likes = heartCounter;
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+//Emoji2
+
+app.patch("/emoji2/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+  // if (id < myObj.length) {
+  //   res.send(myObj[id]);
+  // }
+
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].EmojiTwo = update.EmojiTwo;
+
+  // myObj[id].Likes = heartCounter;
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
+    }
+  });
+});
+
+//emoji3
+
+app.patch("/emoji3/:id", (req, res) => {
+  const id = req.params.id;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+  // if (id < myObj.length) {
+  //   res.send(myObj[id]);
+  // }
+
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].EmojiThree = update.EmojiThree;
 
   // myObj[id].Likes = heartCounter;
 
