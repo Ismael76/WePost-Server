@@ -103,16 +103,4 @@ app.get("/comments", (req, res) => {
   );
 });
 
-app.get("/:id", (req, res) => {
-  const id = req.params.id - 1;
-  const currentData = fs.readFileSync("./data/data.json");
-  const myObj = JSON.parse(currentData);
-
-  if (id < myObj.length) {
-    res.send(myObj[id]);
-  } else {
-    res.status(404).send("Not Found!");
-  }
-});
-
 module.exports = { app };
