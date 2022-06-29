@@ -40,7 +40,7 @@ app.post("/", (req, res) => {
 
   //Adding new data to obj
   myObj.push(data);
-  myObj.sort((a, b) => b.PostID - a.PostID);
+  // myObj.sort((a, b) => b.PostID - a.PostID);
 
   //Writing to JSON file
   const newData = JSON.stringify(myObj);
@@ -75,6 +75,7 @@ app.post("/comments", (req, res) => {
   const formData = req.body;
   const data = {
     ...formData,
+    Time: dayjs().format("D/M/YYYY h:mm A"),
   };
   const jsonString = JSON.stringify(data);
   //Adding new data to obj
@@ -100,6 +101,18 @@ app.get("/comments", (req, res) => {
       console.log("File data:", jsonString);
     })
   );
+});
+
+app.get("/:id", (req, res) => {
+  const id = req.params.id - 1;
+  const currentData = fs.readFileSync("./data/data.json");
+  const myObj = JSON.parse(currentData);
+
+  if (id < myObj.length) {
+    res.send(myObj[id]);
+  } else {
+    res.status(404).send("Not Found!");
+  }
 });
 
 module.exports = { app };
