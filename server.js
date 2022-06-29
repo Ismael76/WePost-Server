@@ -51,6 +51,7 @@ app.post("/", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  res.status(201).send(myObj);
 });
 
 app.get("/", (req, res) => {
@@ -89,6 +90,7 @@ app.post("/comments", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+   res.status(201).send(myObj);
 });
 
 app.get("/comments", (req, res) => {
@@ -96,11 +98,13 @@ app.get("/comments", (req, res) => {
     fs.readFileSync("./data/comments.json", "utf8", (err, jsonString) => {
       if (err) {
         console.log("File read failed:", err);
+        // res.status(404).send(err);
         return;
       }
       console.log("File data:", jsonString);
+      // res.status(200);
     })
   );
 });
 
-module.exports = { app };
+module.exports =  {app};
