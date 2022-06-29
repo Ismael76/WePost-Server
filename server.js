@@ -65,7 +65,7 @@ app.get("/", (req, res) => {
   );
 });
 
-// For one comment 
+// For one comment
 
 app.patch("/:id", (req, res) => {
   const id = req.params.id;
@@ -75,22 +75,35 @@ app.patch("/:id", (req, res) => {
   //   res.send(myObj[id]);
   // }
 
-    const update = req.body;
-    const updateData = {
-      ...update,
+  console.log(myObj[id].Likes);
+  const update = req.body;
+
+  console.log(update);
+
+  myObj[id].Likes = update.Likes;
+
+  // myObj[id].Likes = heartCounter;
+
+  const newUpdate = JSON.stringify(myObj);
+  fs.writeFile("./data/data.json", newUpdate, (err) => {
+    if (err) {
+      console.log("Error writing file", err);
+    } else {
+      console.log("Successfully wrote file");
     }
-    console.log(update);
-    const jString = JSON.stringify(updateData);
-    myObj.push(updateData);
-    const newUpdate = JSON.stringify(myObj);
-    fs.writeFile("./data/data.json", newUpdate, (err) => {
-      if (err) {
-        console.log("Error writing file", err);
-      } else {
-        console.log("Successfully wrote file");
-      }
-    })
+  });
 });
+
+// app.get("/:id", (req, res) => {
+//   const id = req.params.id - 1;
+//   const currentData = fs.readFileSync("./data/data.json");
+//   const myObj = JSON.parse(currentData);
+//   if (id < myObj.length) {
+//     res.send(myObj[id]);
+//   } else {
+//     res.status(404).send("Not Found!");
+//   }
+// });
 
 //Comments
 
