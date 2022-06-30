@@ -10,42 +10,9 @@ const dayjs = require("dayjs");
 
 const { json } = require("express");
 
-var allowCrossDomain = function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, Content-Length, X-Requested-With"
-  );
-
-  // intercept OPTIONS method
-  if ("OPTIONS" == req.method) {
-    res.send(200);
-  } else {
-    next();
-  }
-};
-
-app.use(allowCrossDomain);
-
 app.use(cors());
 
 app.use(express.json());
-
-//Cors Configuration - Start
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested, Content-Type, Accept Authorization"
-//   );
-//   if (req.method === "OPTIONS") {
-//     res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
-//     return res.status(200).json({});
-//   }
-//   next();
-// });
-//Cors Configuration - End
 
 let postID = 1;
 let likes = 0;
