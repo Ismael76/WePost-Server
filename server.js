@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 
-// const cors = require("cors");
+const cors = require("cors");
 
 const fs = require("fs");
 
@@ -10,7 +10,7 @@ const dayjs = require("dayjs");
 
 const { json } = require("express");
 
-// app.use(cors());
+app.use(cors());
 
 app.use(express.json());
 
