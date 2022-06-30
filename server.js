@@ -91,6 +91,7 @@ app.patch("/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
 
 app.patch("/emoji1/:id", (req, res) => {
@@ -112,6 +113,7 @@ app.patch("/emoji1/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
 
 //Emoji2
@@ -135,6 +137,7 @@ app.patch("/emoji2/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
 
 //emoji3
@@ -158,6 +161,7 @@ app.patch("/emoji3/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
 
 //Comments
