@@ -10,8 +10,12 @@ const dayjs = require("dayjs");
 
 const { json } = require("express");
 
-app.use(cors());
-
+app.use(
+  cors({
+    origin: "https://rum-wepost.herokuapp.com/",
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 //Cors Configuration - Start
