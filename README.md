@@ -1,6 +1,6 @@
 # WePost Server
 
-To access the live version of the website please use this following link:
+To access the live version of the website please use this following link: https://we-post.netlify.app/?
 
 # Project Description
 
