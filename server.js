@@ -10,12 +10,6 @@ const dayjs = require("dayjs");
 
 const { json } = require("express");
 
-app.use(allowCrossDomain);
-
-app.use(cors());
-
-app.use(express.json());
-
 var allowCrossDomain = function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
@@ -31,6 +25,12 @@ var allowCrossDomain = function (req, res, next) {
     next();
   }
 };
+
+app.use(allowCrossDomain);
+
+app.use(cors());
+
+app.use(express.json());
 
 //Cors Configuration - Start
 // app.use((req, res, next) => {
