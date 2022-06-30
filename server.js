@@ -34,8 +34,10 @@ app.post("/", (req, res) => {
     EmojiOne: emojiOne,
     EmojiTwo: emojiTwo,
     EmojiThree: emojiThree,
-    Time: dayjs().format("D/M/YYYY h:mm A"),
+    Time: dayjs().add(1, "hour").format("D/M/YYYY h:mm A"),
   };
+  console.log(dayjs().format("D/M/YYYY h:mm A"));
+
   const jsonString = JSON.stringify(data);
 
   //Adding new data to obj
@@ -168,7 +170,7 @@ app.post("/comments", (req, res) => {
   const formData = req.body;
   const data = {
     ...formData,
-    Time: dayjs().format("D/M/YYYY h:mm A"),
+    Time: dayjs().add(1, "hour").format("D/M/YYYY h:mm A"),
   };
   const jsonString = JSON.stringify(data);
   //Adding new data to obj
