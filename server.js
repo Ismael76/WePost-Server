@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 
-const cors = require("cors");
+// const cors = require("cors");
 
 const fs = require("fs");
 
@@ -10,9 +10,24 @@ const dayjs = require("dayjs");
 
 const { json } = require("express");
 
-app.use(cors());
+// app.use(cors());
 
 app.use(express.json());
+
+//Cors Configuration - Start
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested, Content-Type, Accept Authorization"
+  );
+  if (req.method === "OPTIONS") {
+    res.header("Access-Control-Allow-Methods", "POST, PUT, PATCH, GET, DELETE");
+    return res.status(200).json({});
+  }
+  next();
+});
+//Cors Configuration - End
 
 let postID = 1;
 let likes = 0;
@@ -91,22 +106,16 @@ app.patch("/:id", (req, res) => {
   });
 });
 
-
-
-
 app.patch("/emoji1/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
-
 
   const update = req.body;
 
   console.log(update);
 
   myObj[id].EmojiOne = update.EmojiOne;
-
-
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -131,7 +140,6 @@ app.patch("/emoji2/:id", (req, res) => {
 
   myObj[id].EmojiTwo = update.EmojiTwo;
 
-
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
     if (err) {
@@ -155,7 +163,6 @@ app.patch("/emoji3/:id", (req, res) => {
 
   myObj[id].EmojiThree = update.EmojiThree;
 
-
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
     if (err) {
@@ -165,8 +172,6 @@ app.patch("/emoji3/:id", (req, res) => {
     }
   });
 });
-
-
 
 //Comments
 
@@ -192,7 +197,7 @@ app.post("/comments", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
-   res.status(201).send(myObj);
+  res.status(201).send(myObj);
 });
 
 app.get("/comments", (req, res) => {
@@ -209,4 +214,4 @@ app.get("/comments", (req, res) => {
   );
 });
 
-module.exports =  {app};
+module.exports = { app };
