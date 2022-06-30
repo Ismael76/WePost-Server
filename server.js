@@ -34,8 +34,10 @@ app.post("/", (req, res) => {
     EmojiOne: emojiOne,
     EmojiTwo: emojiTwo,
     EmojiThree: emojiThree,
-    Time: dayjs().format("D/M/YYYY h:mm A"),
+    Time: dayjs().add(1, "hour").format("D/M/YYYY h:mm A"),
   };
+  console.log(dayjs().format("D/M/YYYY h:mm A"));
+
   const jsonString = JSON.stringify(data);
 
   //Adding new data to obj
@@ -89,24 +91,19 @@ app.patch("/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
-
-
-
 
 app.patch("/emoji1/:id", (req, res) => {
   const id = req.params.id;
   const currentData = fs.readFileSync("./data/data.json");
   const myObj = JSON.parse(currentData);
 
-
   const update = req.body;
 
   console.log(update);
 
   myObj[id].EmojiOne = update.EmojiOne;
-
-
 
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
@@ -116,6 +113,7 @@ app.patch("/emoji1/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
 
 //Emoji2
@@ -131,7 +129,6 @@ app.patch("/emoji2/:id", (req, res) => {
 
   myObj[id].EmojiTwo = update.EmojiTwo;
 
-
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
     if (err) {
@@ -140,6 +137,7 @@ app.patch("/emoji2/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
 
 //emoji3
@@ -155,7 +153,6 @@ app.patch("/emoji3/:id", (req, res) => {
 
   myObj[id].EmojiThree = update.EmojiThree;
 
-
   const newUpdate = JSON.stringify(myObj);
   fs.writeFile("./data/data.json", newUpdate, (err) => {
     if (err) {
@@ -164,9 +161,8 @@ app.patch("/emoji3/:id", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
+  return res.status(200).send(newUpdate);
 });
-
-
 
 //Comments
 
@@ -178,7 +174,7 @@ app.post("/comments", (req, res) => {
   const formData = req.body;
   const data = {
     ...formData,
-    Time: dayjs().format("D/M/YYYY h:mm A"),
+    Time: dayjs().add(1, "hour").format("D/M/YYYY h:mm A"),
   };
   const jsonString = JSON.stringify(data);
   //Adding new data to obj
@@ -192,7 +188,7 @@ app.post("/comments", (req, res) => {
       console.log("Successfully wrote file");
     }
   });
-   res.status(201).send(myObj);
+  res.status(201).send(myObj);
 });
 
 app.get("/comments", (req, res) => {
@@ -209,4 +205,4 @@ app.get("/comments", (req, res) => {
   );
 });
 
-module.exports =  {app};
+module.exports = { app };
