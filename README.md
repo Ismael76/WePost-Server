@@ -35,13 +35,13 @@ Welcome to WePost, a community journaling webapp. WePost allows users to speak a
 
 - The color bar allows the user to personalise the site. By picking colors for the color inputs, the header color changes and becomes more personalised.
 
-### Reactions and Likes
+### Reactions & Likes
 ![reactions and likes](./images/reactions.png)
 
 - The reactions and likes are displayed as emojis, which the user can click. 
 - When clicked, a counter increments to show the number of each reaction/like associated with the post.
 
-### Comment bar
+### Comment Bar
 ![comment input](./images/commentbar.png)
 
 - The comment bar is displayed as a text input below the post.
